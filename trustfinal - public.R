@@ -17,7 +17,6 @@ tillit$ntrust<-as.numeric(tillit$ntrust)
 tillit$ltrust<-as.numeric(tillit$ltrust)
 tillit$income<-as.numeric(tillit$income)
 tillit <- tillit %>% mutate(difftrust = ltrust-ntrust)
-
 head(tillit)
 glimpse(tillit)
 table(tillit$Fylke)
