@@ -53,6 +53,7 @@ f <- subset(f, kommune!="Longyearbyen")
 f <- f %>% select(kom, innvandrer)
 d3 <- merge(tillit,f, by="kom") 
 tillit <- d3
+tillit$oslodistance <- tillit$oslodistance/100
 
 ## New Regression models----
 mod_tom <- lmer(ntrust ~ 1 + (1|kom), data=tillit)
@@ -80,6 +81,15 @@ summary(model4b)
 
 model4b <- lme(ntrust~north+west+rurality+hedu+income+voluntary+statesat+frp+government+novote+GDP+kom_unemployment+innvandrer, random= ~1|kom, data=tillit, na.action=na.omit, method="ML")
 summary(model4b)
+
+model4d <- lme(ntrust~north+west+rurality+hedu+income+voluntary+statesat+frp+government+novote+GDP+kom_unemployment+innvandrer+oslodistance, random= ~1|kom, data=tillit, na.action=na.omit, method="ML")
+summary(model4d)
+
+model4e <- lme(ntrust~north+west+rurality+hedu+income+voluntary+statesat+frp+government+novote+GDP+kom_unemployment+innvandrer+oslodistance+oslodistance:north, random= ~1|kom, data=tillit, na.action=na.omit, method="ML")
+summary(model4e)
+
+model4f <- lme(ntrust~west+rurality+hedu+income+voluntary+statesat+frp+government+novote+GDP+kom_unemployment+innvandrer+oslodistance, random= ~1|kom, data=tillit, na.action=na.omit, method="ML")
+summary(model4f)
 
 modLM <- lm(ntrust~north+west+rurality+hedu+income+voluntary+statesat+frp+government+novote+GDP+kom_unemployment+innvandrer, data=tillit, na.action=na.omit)
 summary(modLM)
