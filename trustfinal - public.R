@@ -28,6 +28,11 @@ d2 <- merge(tillit,gdp, by="Fylke")
 head(d2)
 tillit <- d2
 
+reise2 <- read_excel("C:/Users/jse022/Dropbox/Documents/Doktorgrad UiT/Tillit2/reise.xlsx")
+d2 <- merge(tillit,reise2, by="kom") 
+head(d2)
+tillit <- d2
+
 library(haven)
 FivaHalseNatvik2017 <- read_dta("C:/Users/jse022/Dropbox/Documents/Doktorgrad UiT/Datasett/FivaHalseNatvik2017.dta")
 e<- FivaHalseNatvik2017
